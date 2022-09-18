@@ -108,5 +108,5 @@ firebase deploy
  <a href="https://replit.com/@SashenHasindu/Hulu-Clone?v=1" target="_blank"><img src="https://img.shields.io/badge/-Replit-%23333?style=for-the-badge&logo=replit&logoColor=white" target="_blank"></a>
 </div>
 
-![image](https://user-images.githubusercontent.com/99184393/178734984-dea58b12-3976-4ccb-97b3-0ed40aaa894b.png)
 
+<a href="https://hulu-clone-ea955.firebaseapp.com/" target="_blank">![image](https://user-images.githubusercontent.com/99184393/178734984-dea58b12-3976-4ccb-97b3-0ed40aaa894b.png)</a>
