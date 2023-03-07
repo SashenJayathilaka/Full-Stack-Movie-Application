@@ -35,16 +35,19 @@ function PersonBanner({ personData, taggedImages }: Props) {
     if (!user && !personId) return;
 
     try {
-      const response = await fetch("http://localhost:3001/find/person", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user.user.uid,
-          personId: personId,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/find/person`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user.user.uid,
+            personId: personId,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -64,21 +67,24 @@ function PersonBanner({ personData, taggedImages }: Props) {
     try {
       setIsLoading(true);
 
-      const response = await fetch("http://localhost:3001/save/person", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: session?.user?.uid,
-          personId: personData.id,
-          gender: personData.gender,
-          name: personData.name,
-          popularity: personData.popularity,
-          profile_path: personData.profile_path,
-          known_for_department: "Action",
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/save/person`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: session?.user?.uid,
+            personId: personData.id,
+            gender: personData.gender,
+            name: personData.name,
+            popularity: personData.popularity,
+            profile_path: personData.profile_path,
+            known_for_department: "Action",
+          }),
+        }
+      );
 
       const data = await response.json();
 

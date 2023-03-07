@@ -8,6 +8,7 @@ import { findMovies } from "./controllers/findMovie.js";
 import { findPerson } from "./controllers/findPerson.js";
 import { getMovie } from "./controllers/getMovie.js";
 import { getPerson } from "./controllers/getPerson.js";
+import { getUserData } from "./controllers/getUserData.js";
 import { saveMovies } from "./controllers/saveMovie.js";
 import { SavePerson } from "./controllers/savePerson.js";
 import { suggestionUser } from "./controllers/suggestionUser.js";
@@ -18,9 +19,9 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 const pusher = new Pusher({
-  appId: "1563131",
-  key: "9a52b8f05435b6e35101",
-  secret: "f7f36d4243b06c8eadb1",
+  appId: process.env.appId,
+  key: process.env.key,
+  secret: process.env.secret,
   cluster: "ap2",
   useTLS: true,
 });
@@ -60,6 +61,7 @@ mongoose.connection.once("open", () => {
 app.get("/", (req, res) => res.status(200).send("Movie App Build"));
 
 app.post("/user", getUser);
+app.get("/user/:id", getUserData);
 app.get("/movie/:id", getMovie);
 app.post("/save/movie", saveMovies);
 app.post("/find/movie", findMovies);

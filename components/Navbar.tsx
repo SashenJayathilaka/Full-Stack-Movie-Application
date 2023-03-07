@@ -63,26 +63,27 @@ function Navbar({}: Props) {
           >
             TV Shows
           </li>
+          <li className="navBarComponents" onClick={() => router.push("/")}>
+            Movies
+          </li>
           <li
             className={`navBarComponents ${
               pathname === "/people" && "bg-red-500 px-2.5 py-2.5 rounded-md"
             }`}
-            onClick={() => router.push("/")}
-          >
-            Movies
-          </li>
-          <li
-            className="navBarComponents"
             onClick={() => router.push("/people")}
           >
             People
           </li>
-          <li
-            className="navBarComponents"
-            onClick={() => router.push("/profile")}
-          >
-            Favorite
-          </li>
+          {session && (
+            <li
+              className={`navBarComponents ${
+                pathname === "/profile" && "bg-red-500 px-2.5 py-2.5 rounded-md"
+              }`}
+              onClick={() => router.push("/profile")}
+            >
+              Profile
+            </li>
+          )}
         </ul>
       </div>
       <div className="font-light flex items-center space-x-4 text-sm mr-8">
@@ -104,8 +105,12 @@ function Navbar({}: Props) {
                 "aria-labelledby": "basic-button",
               }}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={() => router.push("/profile")}>
+                Profile
+              </MenuItem>
+              <MenuItem onClick={() => router.push("/profile")}>
+                My account
+              </MenuItem>
               <MenuItem onClick={() => signOut()}>Logout</MenuItem>
             </Menu>
           </div>
