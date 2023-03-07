@@ -53,9 +53,28 @@ Full Stack Movie Application with NEXT.JS 13!(Next.js 13, mongodb, node js, Next
 
 ### :camera: Screenshots
 
+- Application Home page & Demo
+
 <div align="center">
 <a href="https://movie-sapp.netlify.app" target="_blank"><img  src='./demo/ezgif-2-b23fb77da9.gif' alt='image'/></a>
 </div>
+
+<br />
+
+- Movie Details Page
+
+<div align="center">
+<a href="https://movie-sapp.netlify.app" target="_blank"><img  src='https://user-images.githubusercontent.com/99184393/223381897-a4e2a6bc-dda5-4c94-a79f-b12708dc57eb.png' alt='image' width='800'/></a>
+</div>
+
+<br />
+
+- User Profile Page
+
+<div align="center">
+<a href="https://movie-sapp.netlify.app" target="_blank"><img  src='https://user-images.githubusercontent.com/99184393/223382847-4e1000b5-1ae4-4ffd-a521-3ed95f616f38.png' alt='image' width='800'/></a>
+</div>
+
 
 ## <a href="https://movie-sapp.netlify.app" target="_blank">LIVE DEMO 💥</a>
 
