@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="https://user-images.githubusercontent.com/99184393/223372256-b3feebc0-cb0b-4dd1-99a3-b4b8a978af74.png" alt="logo" width="250" height="auto" />
+  <img src="https://user-images.githubusercontent.com/99184393/223374639-56c53106-86d4-4a36-be0b-6507ce869119.png" alt="logo" width="200" height="auto" />
 
   <h1>Full Stack Movie Application with NEXT.JS 13!</h1>
 
@@ -72,20 +72,17 @@ Full Stack Movie Application with NEXT.JS 13!(Next.js 13, mongodb, node js, Next
     <li><a href="https://nextjs.org/">Next.js</a></li>
     <li><a href="https://reactjs.org/">React.js</a></li>
     <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
+    <li><a href="https://www.themoviedb.org">The Movie Database (TMDB)</a></li>
   </ul>
 </details>
 
-<!--<details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://firebase.google.com">Firebase</a></li>
-  </ul>
-</details>-->
-
 <details>
-  <summary>Api</summary>
+  <summary>Server</summary>
   <ul>
-    <li><a href="https://www.themoviedb.org">The Movie Database (TMDB)</a></li>
+    <li><a href="https://nodejs.org/en/">Node Js</a></li>
+    <li><a href="https://expressjs.com/">express</a></li>
+    <li><a href="https://www.mongodb.com/">mongoDB</a></li>
+    <li><a href="https://railway.app/">Railway</a></li>
   </ul>
 </details>
 
@@ -106,14 +103,11 @@ Full Stack Movie Application with NEXT.JS 13!(Next.js 13, mongodb, node js, Next
 <a href="#"><img src="https://user-images.githubusercontent.com/99184393/180462270-ea4a249c-627c-4479-9431-5c3fd25454c4.png" alt="" width="30" height="30" /></a>
         </td>
                                 <td>
-<a href="#"><img src="https://user-images.githubusercontent.com/99184393/177784603-d69e9d02-721a-4bce-b9b3-949165d2edeb.png" alt="" width="30" height="30" /></a>
+<a href="#"><img src="https://user-images.githubusercontent.com/99184393/181918664-569af962-756c-438c-b350-294f042e6f61.png" alt="" width="30" height="30" /></a>
         </td>
                                             <td>
 <a href="#"><img src="https://user-images.githubusercontent.com/99184393/204170976-0e5c6e2a-2b41-483d-adbd-d5d1e40b8d15.png" alt="" width="30" height="30" /></a>
-        </td>
-                                                  <td>
-<a href="#"><img src="https://user-images.githubusercontent.com/99184393/210160017-d4ded1e1-49d8-424d-b14c-a284856e730c.png" alt="" width="30" height="30" /></a>
-        </td>
+        </td>                                              
     </tr>
 </table>
 
@@ -123,6 +117,10 @@ Full Stack Movie Application with NEXT.JS 13!(Next.js 13, mongodb, node js, Next
 
 - Sign up for a The Movie Database (TMDB) account <a href='https://www.themoviedb.org'>HERE</a>
 - Install Node JS in your computer <a href='https://nodejs.org/en/'>HERE</a>
+- Create Account mongoDB <a href='https://www.mongodb.com/'>HERE</a>
+- Create Account Railway <a href='https://railway.app/'>HERE</a>
+- Get Lookup APi Key <a href='https://extreme-ip-lookup.com/'>HERE</a>
+- Pusher JS <a href='https://pusher.com/'>HERE</a>
 
 <!-- Env Variables -->
 
@@ -130,27 +128,31 @@ Full Stack Movie Application with NEXT.JS 13!(Next.js 13, mongodb, node js, Next
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`NEXTAUTH_URL`
+Frontend
+
+`NEXT_PUBLIC_API_KEY`
 
 `GOOGLE_CLIENT_ID`
 
-`NEXT_PUBLIC_SECRET`
-
-`NEXT_PUBLIC_BASE_URL`
-
 `GOOGLE_CLIENT_SECRET`
 
-`NEXT_PUBLIC_FIREBASE_APP_ID`
+`NEXT_PUBLIC_SECRET`
 
-`NEXT_PUBLIC_FIREBASE_API_KEY`
+`NEXTAUTH_URL`
 
-`NEXT_PUBLIC_FIREBASE_PROJECT_ID`
+`NEXT_PUBLIC_SERVER_URL`
 
-`NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
+`NEXT_PUBLIC_LOOKUP_KEY`
 
-`NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`
+Server
 
-`NEXT_PUBLIC_FIREBASE_MESSAGING_SET`
+`MONGODB_URL`
+
+`PUSHER_APPID`
+
+`PUSHER_KEY`
+
+`USHER_SECRET`
 
 ### :gear: Installation
 
@@ -185,12 +187,10 @@ npx tailwindcss init -p
 Add the paths to all of your template files in your `tailwind.config.js` file.
 <br>
 
-```js
+```ts
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
   },
@@ -210,7 +210,7 @@ Add the `@tailwind` directives for each of Tailwind’s layers to your `./styles
 
 Install dependencies
 
-<a href="https://github.com/SashenJayathilaka/NETFLIX-Clone/blob/master/package.json" target="_blank">🔶 Other Dependency Info</a>
+<a href="https://github.com/SashenJayathilaka/Full-Stack-Movie-Application/blob/master/package.json" target="_blank">🔶 Other Dependency Info</a>
 
 <!-- Run Locally -->
 
@@ -219,11 +219,11 @@ Install dependencies
 Clone the project
 
 ```bash
-  git clone https://github.com/SashenJayathilaka/NETFLIX-Clone.git
+  git clone https://github.com/SashenJayathilaka/Full-Stack-Movie-Application.git
 ```
 
 ```bash
-cd NETFLIX-Clone
+cd Full-Stack-Movie-Application
 ```
 
 Install dependencies
@@ -260,19 +260,27 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 To deploy this project run
 
-##### Deploy on Vercel
+##### Frontend
 
-## Deploy on Vercel
+##### Deploy on Netlify
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy your Next.js app is to use the [Netlify Platform](https://app.netlify.com/) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Check out our [Netlify deployment documentation](https://docs.netlify.com/) for more details.
+
+##### Backend (server)
+
+##### Deploy on Railway
+
+The easiest way to deploy your server is to use the [Railway Platform](https://railway.app/) from the creators of Next.js.
+
+Check out our [Railway deployment documentation](https://docs.railway.app/deploy/deployments) for more details.
 
 ## :handshake: Contact
 
 Your Name - [@twitter_handle](https://twitter.com/SashenHasinduJ) - sashenjayathilaka95@gmail.com
 
-Project Link: [https://github.com/SashenJayathilaka/NETFLIX-Clone.git](https://github.com/SashenJayathilaka/NETFLIX-Clone.git)
+Project Link: [https://github.com/SashenJayathilaka/Full-Stack-Movie-Application.git](https://github.com/SashenJayathilaka/Full-Stack-Movie-Application.git)
 
 <hr />
 <br />
