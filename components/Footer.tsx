@@ -1,29 +1,33 @@
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {};
 
 function Footer({}: Props) {
   const { data: session } = useSession();
+  const [country, setCountry] = useState("United States");
 
   const createDbUser = async (user: Session) => {
     if (!user) return;
 
     try {
-      const response = await fetch("http://localhost:3001/user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user.user.uid,
-          name: user.user.name,
-          email: user.user.email,
-          userPhotoUrl: user.user.image,
-          country: "SriLanka",
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/user`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user.user.uid,
+            name: user.user.name,
+            email: user.user.email,
+            userPhotoUrl: user.user.image,
+            country: country,
+          }),
+        }
+      );
 
       const data = await response.json();
       if (data.status === "ok") {
@@ -39,6 +43,14 @@ function Footer({}: Props) {
   useEffect(() => {
     createDbUser(session!);
   }, [session]);
+
+  useEffect(() => {
+    fetch(
+      `https://extreme-ip-lookup.com/json/?key=${process.env.NEXT_PUBLIC_LOOKUP_KEY}`
+    )
+      .then((res) => res.json())
+      .then((data) => setCountry(data.country));
+  }, []);
 
   return (
     <div>
@@ -101,19 +113,12 @@ function Footer({}: Props) {
             alt="globe"
           />
           English
-          {/*        <img
-            className="w-3 m-2 pt-0.5"
-            src="/assets/down-filled-triangular-arrow.png"
-            alt="drop-down"
-          /> */}
         </button>
         <p className="my-4 text-xs font-medium">
           <span className="text-white">Movie</span>
           <span className="text-red-500">APP</span>
         </p>
-        <p className="my-4 text-xs font-medium">
-          sashenjayathilaka95@gmail.com
-        </p>
+        <p className="my-4 text-xs font-medium">{country}</p>
       </div>
 
       <div className="h-9 py-1 text-white text-center bg-[#333333]">

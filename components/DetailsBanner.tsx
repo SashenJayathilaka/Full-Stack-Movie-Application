@@ -40,16 +40,19 @@ function DetailsBanner({ movieDetails, movieCast, session }: Props) {
     if (!user) return;
 
     try {
-      const response = await fetch("http://localhost:3001/find/movie", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user.user.uid,
-          movieId: movieId,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/find/movie`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user.user.uid,
+            movieId: movieId,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -71,23 +74,26 @@ function DetailsBanner({ movieDetails, movieCast, session }: Props) {
     try {
       setIsLoading(true);
 
-      const response = await fetch("http://localhost:3001/save/movie", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: session?.user?.uid,
-          movieId: movieDetails.id,
-          title: movieDetails.title,
-          overview: movieDetails.overview,
-          name: movieDetails.name,
-          backdrop_path: movieDetails.backdrop_path,
-          poster_path: movieDetails.poster_path,
-          original_name: movieDetails.original_name,
-          vote_average: movieDetails.vote_average,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/save/movie`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: session?.user?.uid,
+            movieId: movieDetails.id,
+            title: movieDetails.title,
+            overview: movieDetails.overview,
+            name: movieDetails.name,
+            backdrop_path: movieDetails.backdrop_path,
+            poster_path: movieDetails.poster_path,
+            original_name: movieDetails.original_name,
+            vote_average: movieDetails.vote_average,
+          }),
+        }
+      );
 
       const data = await response.json();
 

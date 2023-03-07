@@ -2,7 +2,7 @@
 
 import Footer from "@/components/Footer";
 import GlobalLoading from "@/components/GlobalLoading";
-import MainProfile from "@/components/MainProfile";
+import MainProfile, { UserData } from "@/components/MainProfile";
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
@@ -15,6 +15,7 @@ function ProfilePage({}: Props) {
   const [userData, setUserData] = useState({
     movie: [],
     person: [],
+    user: {},
   });
   const [loading, setLoading] = useState(true);
 
@@ -24,12 +25,15 @@ function ProfilePage({}: Props) {
     try {
       setLoading(true);
 
-      const [favoriteMovie, favoritePerson] = await Promise.all([
-        fetch(`http://localhost:3001/movie/${userId}`).then((res) =>
-          res.json()
+      const [favoriteMovie, favoritePerson, userDetails] = await Promise.all([
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/movie/${userId}`).then(
+          (res) => res.json()
         ),
-        fetch(`http://localhost:3001/person/${userId}`).then((res) =>
-          res.json()
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/person/${userId}`).then(
+          (res) => res.json()
+        ),
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/user/${userId}`).then(
+          (res) => res.json()
         ),
       ]);
 
@@ -37,11 +41,10 @@ function ProfilePage({}: Props) {
         ...prev,
         movie: favoriteMovie.quote,
         person: favoritePerson.quote,
+        user: userDetails.quote,
       }));
 
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+      setLoading(false);
     } catch (error: any) {
       console.log(
         "🚀 ~ file: DividerMovieLine.tsx:18 ~ fetchData ~ error:",
@@ -52,7 +55,7 @@ function ProfilePage({}: Props) {
 
   useEffect(() => {
     fetchData(session?.user.uid!);
-  }, [session]);
+  }, []);
 
   return (
     <motion.div
@@ -68,7 +71,7 @@ function ProfilePage({}: Props) {
           <MainProfile
             userMovieData={userData.movie}
             userPersonData={userData.person}
-            session={session}
+            userData={userData.user as UserData}
           />
         </main>
       )}

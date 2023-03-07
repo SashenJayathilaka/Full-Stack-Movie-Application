@@ -1,30 +1,65 @@
-import { Movie, personData } from "@/typings";
 import { baseURL } from "@/utils/baseUrl";
 import { motion } from "framer-motion";
 import { Session } from "next-auth";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiFillInstagram, AiFillTwitterCircle } from "react-icons/ai";
 import { BsFacebook, BsPinterest } from "react-icons/bs";
 import CircularRate from "./CircularRate";
 
+export interface FavoriteMovieData {
+  _id: string;
+  userId: string;
+  movieId: number;
+  overview: string;
+  title: string;
+  name: string;
+  backdrop_path: string;
+  poster_path: string;
+  original_name: string;
+  vote_average: number;
+}
+
+export interface FavoritePeopleData {
+  _id: string;
+  userId: string;
+  personId: number;
+  gender: number;
+  name: string;
+  popularity: number;
+  profile_path: string;
+  known_for_department: string;
+}
+
+export interface UserData {
+  _id: string;
+  userId: string;
+  name: string;
+  email: string;
+  userPhotoUrl: string;
+  country: string;
+  likeMovies: number[];
+  likePerson: number[];
+}
+
 type Props = {
-  userMovieData: Movie[];
-  userPersonData: personData[];
-  session: Session;
+  userMovieData: FavoriteMovieData[];
+  userPersonData: FavoritePeopleData[];
+  userData: UserData;
 };
 
-function MainProfile({ userMovieData, userPersonData, session }: Props) {
+function MainProfile({ userMovieData, userPersonData, userData }: Props) {
   const router = useRouter();
   const [ifFavorite, setIsFavouring] = useState(true);
+  //source.unsplash.com/1600x900/?nature,photography,technology
 
-  return (
+  https: return (
     <div className="header__wrapper text-white">
       <header
         style={{
           width: "100%",
           background:
-            'url("https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80") no-repeat 50% 20% / cover',
+            'url("https://source.unsplash.com/1600x900/?nature,photography,technology") no-repeat 50% 20% / cover',
           minHeight: "calc(100px + 15vw)",
         }}
       ></header>
@@ -41,18 +76,18 @@ function MainProfile({ userMovieData, userPersonData, session }: Props) {
         >
           <div className="absolute top-[-60px] left-[50%] translate-x-[-50%]">
             <img
-              src={session.user.image!}
-              alt={session.user.name!}
+              src={userData.userPhotoUrl}
+              alt={userData.name}
               className="w-[100px] height-[100px] rounded-full shadow-md block border-2 border-gray-400 px-1 py-1"
             />
           </div>
           <h2 className="mt-[60px] md:mt-[40px] font-bold text-[22px] mb-[5px]">
-            {session.user.name}
+            {userData.name}
           </h2>
-          <p className="text-[0.9rem] text-[#818181] m-[0]">UX/UI Designer</p>
           <p className="text-[0.9rem] text-[#818181] m-[0]">
-            {session.user.email}
+            {userData.country}
           </p>
+          <p className="text-[0.9rem] text-[#818181] m-[0]">{userData.email}</p>
 
           <ul className="justify-between relative mt-[35px] mb-[0] after:absolute after:bottom-[-16px] after:block after:bg-[#cccccc] after:h-[1px] after:w-[100%]">
             <li className="flex flex-col text-[#818181] text-[0.9rem]">
@@ -127,7 +162,7 @@ function MainProfile({ userMovieData, userPersonData, session }: Props) {
               <>
                 {userMovieData.map((movie) => (
                   <motion.div
-                    key={movie.id}
+                    key={movie._id}
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
@@ -136,6 +171,11 @@ function MainProfile({ userMovieData, userPersonData, session }: Props) {
                       ease: [0, 0.71, 0.2, 1.01],
                     }}
                     className="relative w-[180px] cursor-pointer"
+                    onClick={() =>
+                      movie.title
+                        ? router.push(`/details/movie${movie.movieId}`)
+                        : router.push(`/details/${movie.movieId}`)
+                    }
                   >
                     <img
                       className="block object-cover"
@@ -161,7 +201,7 @@ function MainProfile({ userMovieData, userPersonData, session }: Props) {
               <>
                 {userPersonData.map((cast) => (
                   <motion.div
-                    key={cast.id}
+                    key={cast._id}
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
@@ -170,7 +210,7 @@ function MainProfile({ userMovieData, userPersonData, session }: Props) {
                       ease: [0, 0.71, 0.2, 1.01],
                     }}
                     className="relative w-[180px] cursor-pointer"
-                    onClick={() => router.push(`/cast/${cast.id}`)}
+                    onClick={() => router.push(`/cast/${cast.personId}`)}
                   >
                     <img
                       className="block object-cover"
@@ -201,3 +241,5 @@ function MainProfile({ userMovieData, userPersonData, session }: Props) {
 }
 
 export default MainProfile;
+
+/*https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80*/
