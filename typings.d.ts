@@ -132,3 +132,20 @@ export interface personData {
   popularity: number;
   profile_path: string;
 }
+
+export interface AuthorDetails {
+  avatar_path: string;
+  name: string;
+  rating: number;
+  username: string;
+}
+
+export interface MovieReviewData {
+  author: string;
+  content: string;
+  created_at: string;
+  id: string;
+  updated_at: string;
+  url: string;
+  author_details: AuthorDetails;
+}

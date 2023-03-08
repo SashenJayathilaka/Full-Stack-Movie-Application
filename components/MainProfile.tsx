@@ -51,9 +51,8 @@ type Props = {
 function MainProfile({ userMovieData, userPersonData, userData }: Props) {
   const router = useRouter();
   const [ifFavorite, setIsFavouring] = useState(true);
-  //source.unsplash.com/1600x900/?nature,photography,technology
 
-  https: return (
+  return (
     <div className="header__wrapper text-white">
       <header
         style={{

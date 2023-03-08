@@ -75,7 +75,6 @@ Full Stack Movie Application with NEXT.JS 13!(Next.js 13, mongodb, node js, Next
 <a href="https://movie-sapp.netlify.app" target="_blank"><img  src='https://user-images.githubusercontent.com/99184393/223382847-4e1000b5-1ae4-4ffd-a521-3ed95f616f38.png' alt='image' width='800'/></a>
 </div>
 
-
 ## <a href="https://movie-sapp.netlify.app" target="_blank">LIVE DEMO 💥</a>
 
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)

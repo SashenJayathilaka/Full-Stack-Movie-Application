@@ -22,6 +22,7 @@ function Seasons({ movieDetails }: Props) {
                 delay: 0.5,
                 ease: [0, 0.71, 0.2, 1.01],
               }}
+              key={season.id}
               //onClick={handleNavigatePage}
               className="relative h-28 min-w-[180px] cursor-pointer transition-transform duration-200 ease-out md:h-[400px] md:min-w-[200px] items-center hover:shadow-2xl"
             >

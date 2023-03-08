@@ -51,6 +51,7 @@ function ImageSwiper({ movieImage }: Props) {
                   alt={image.file_path}
                   layout="fill"
                   className="rounded-md"
+                  loading="lazy"
                 />
               </div>
             </motion.div>

@@ -62,7 +62,7 @@ function TvSession({}: Props) {
       {movie && (
         <main className="relative pl-4 pb-24 lg:space-y-24">
           <HomeBanner netflixOriginals={movie.topRated} />
-          <section className="md:space-y-16 pt-20">
+          <section className="md:space-y-24 pt-20">
             <Row
               movies={movie.topRated.slice(0, 10)}
               title="Trending Now"
