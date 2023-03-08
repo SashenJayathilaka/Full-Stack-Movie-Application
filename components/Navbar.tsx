@@ -74,6 +74,14 @@ function Navbar({}: Props) {
           >
             People
           </li>
+          <li
+            className={`navBarComponents ${
+              pathname === "/search" && "bg-red-500 px-2.5 py-2.5 rounded-md"
+            }`}
+            onClick={() => router.push("/search")}
+          >
+            Search
+          </li>
           {session && (
             <li
               className={`navBarComponents ${
