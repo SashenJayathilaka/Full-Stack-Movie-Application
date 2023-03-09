@@ -1,8 +1,10 @@
 import { PopularTyping } from "@/typings";
 import { baseURL } from "@/utils/baseUrl";
 import { motion } from "framer-motion";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import CircularRate from "./CircularRate";
 
 type Props = {
@@ -11,7 +13,18 @@ type Props = {
 
 function PersonMapping({ person }: Props) {
   const router = useRouter();
+  const { data: session } = useSession();
   const [isHover, setIsHover] = useState(false);
+
+  const navigatePage = async () => {
+    if (session) {
+      router.push(`/cast/${person.id}`);
+    } else {
+      toast.error(
+        "You Need to Sign In to Look Up More Information About This Person"
+      );
+    }
+  };
 
   return (
     <motion.div
@@ -23,7 +36,7 @@ function PersonMapping({ person }: Props) {
         delay: 0.5,
         ease: [0, 0.71, 0.2, 1.01],
       }}
-      onClick={() => router.push(`/cast/${person.id}`)}
+      onClick={() => navigatePage()}
     >
       <div
         onMouseEnter={() => setIsHover(true)}

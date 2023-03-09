@@ -138,14 +138,14 @@ function SearchComponent({}: Props) {
       ) : (
         <section
           id="photos"
-          className="my-5 grid grid-cols-1 md:grid-cols-6 gap-4"
+          className="my-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 "
         >
           {userSearchData?.map((data) => (
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="relative hover:opacity-75 cursor-pointer"
+              className="relative group-hover:opacity-75 cursor-pointer"
               key={data.id}
               onClick={() =>
                 option === "movie"
@@ -154,6 +154,8 @@ function SearchComponent({}: Props) {
                   ? router.push(`/details/${data.id}`)
                   : option === "person" && router.push(`/cast/${data.id}`)
               }
+              /* onMouseEnter={() => setIsHover(true)}
+              onMouseLeave={() => setIsHover(false)} */
             >
               <img
                 className="md:h-[300px] md:min-w-[200px] object-cover"

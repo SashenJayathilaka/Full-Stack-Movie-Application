@@ -10,7 +10,7 @@ type Props = {
 
 function Seasons({ movieDetails }: Props) {
   return (
-    <div className="px-4 pb-36">
+    <div className="px-4 pb-8">
       <Container header="Seasons">
         <div className="flex items-center scrollbar-hide space-x-0.5 overflow-x-scroll md:space-x-2.5 md:p-2 overflow-y-hidden">
           {movieDetails?.seasons?.map((season) => (
@@ -23,7 +23,6 @@ function Seasons({ movieDetails }: Props) {
                 ease: [0, 0.71, 0.2, 1.01],
               }}
               key={season.id}
-              //onClick={handleNavigatePage}
               className="relative h-28 min-w-[180px] cursor-pointer transition-transform duration-200 ease-out md:h-[400px] md:min-w-[200px] items-center hover:shadow-2xl"
             >
               <p

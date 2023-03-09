@@ -2,9 +2,11 @@
 
 import { Movie } from "@/typings";
 import { motion } from "framer-motion";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import CircularRate from "./CircularRate";
 
 type Props = {
@@ -13,7 +15,22 @@ type Props = {
 
 function SubMovieLine({ movie }: Props) {
   const router = useRouter();
+  const { data: session } = useSession();
   const [isHover, setIsHover] = useState(false);
+
+  const navigatePage = async () => {
+    if (session) {
+      if (movie.title) {
+        router.push(`/details/movie${movie.id}`);
+      } else {
+        router.push(`/details/${movie.id}`);
+      }
+    } else {
+      toast.error(
+        "You Need to Sign In to Look Up More Information About This Movie"
+      );
+    }
+  };
 
   return (
     <motion.div
@@ -24,11 +41,7 @@ function SubMovieLine({ movie }: Props) {
         delay: 0.5,
         ease: [0, 0.71, 0.2, 1.01],
       }}
-      onClick={() =>
-        movie.title
-          ? router.push(`/details/movie${movie.id}`)
-          : router.push(`/details/${movie.id}`)
-      }
+      onClick={() => navigatePage()}
       className="relative h-28 min-w-[180px] cursor-pointer transition-transform duration-200 ease-out md:h-[200px] md:min-w-[350px] md:hover:scale-105"
     >
       {movie.backdrop_path || movie.poster_path ? (

@@ -3,8 +3,9 @@
 import { Movie } from "@/typings";
 import { baseURL } from "@/utils/baseUrl";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BsPlayFill } from "react-icons/bs";
+
 import CircularRate from "./CircularRate";
 
 type Props = {
