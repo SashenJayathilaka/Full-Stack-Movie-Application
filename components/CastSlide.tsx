@@ -4,7 +4,9 @@ import tmdbConfigs from "@/config/tmdb.configs";
 import uiConfigs from "@/config/ui.configs";
 import { Cast } from "@/typings";
 import { Box, Typography } from "@mui/material";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 type Props = {
@@ -13,6 +15,19 @@ type Props = {
 
 function CastSlide({ casts }: Props) {
   const router = useRouter();
+  const { data: session } = useSession();
+
+  const navigatePage = async (castID: number) => {
+    if (!castID) return;
+
+    if (session) {
+      router.push(`/cast/${castID}`);
+    } else {
+      toast.error(
+        "You Need to Sign In to Look Up More Information About This Person"
+      );
+    }
+  };
 
   return (
     <Box
@@ -41,7 +56,7 @@ function CastSlide({ casts }: Props) {
                 ),
                 cursor: "pointer",
               }}
-              onClick={() => router.push(`/cast/${cast.id}`)}
+              onClick={() => navigatePage(cast.id)}
             >
               <Box
                 sx={{
