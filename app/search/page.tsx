@@ -3,6 +3,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import SearchComponent from "@/components/SearchComponent";
+import ToastContainerBar from "@/components/ToastContainer";
 import { motion } from "framer-motion";
 import React from "react";
 
@@ -16,6 +17,7 @@ function searchPage({}: Props) {
       viewport={{ once: true }}
       className="overflow-x-hidden"
     >
+      <ToastContainerBar />
       <Navbar />
       <main>
         <SearchComponent />

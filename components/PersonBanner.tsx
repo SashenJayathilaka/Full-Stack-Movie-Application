@@ -16,7 +16,7 @@ import {
 import { toast } from "react-toastify";
 import CircularRate from "./CircularRate";
 
-const pusher = new Pusher(`${process.env.NEXT_PUBLIC_PUSHER_KEY}`, {
+const pusher = new Pusher("value", {
   cluster: "eu",
 });
 

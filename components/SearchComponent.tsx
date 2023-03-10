@@ -1,8 +1,10 @@
 import { baseURL } from "@/utils/baseUrl";
 import { motion } from "framer-motion";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FcSearch } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 import CircularRate from "./CircularRate";
 
@@ -47,6 +49,7 @@ type Props = {};
 
 function SearchComponent({}: Props) {
   const router = useRouter();
+  const { data: session } = useSession();
   const [option, setOption] = useState("movie");
   const [searchTerms, setSearchTerms] = useState("");
   const [userSearchData, setUserSearchData] = useState<SearchData[]>([]);
@@ -66,6 +69,30 @@ function SearchComponent({}: Props) {
       setUserSearchData(searchData.results);
     } catch (error: any) {
       console.log(error.message);
+    }
+  };
+
+  const navigatePage = (navigateId: number) => {
+    if (!navigateId) return;
+
+    if (session) {
+      if (option === "movie") {
+        router.push(`/details/movie${navigateId}`);
+      } else if (option === "tv") {
+        router.push(`/details/${navigateId}`);
+      } else if (option === "person") {
+        router.push(`/cast/${navigateId}`);
+      } else return;
+    } else {
+      if (option === "movie" || option === "tv") {
+        toast.error(
+          "You Need to Sign In to Look Up More Information About This Movie"
+        );
+      } else {
+        toast.error(
+          "You Need to Sign In to Look Up More Information About This Person"
+        );
+      }
     }
   };
 
@@ -147,15 +174,7 @@ function SearchComponent({}: Props) {
               viewport={{ once: true }}
               className="relative group-hover:opacity-75 cursor-pointer"
               key={data.id}
-              onClick={() =>
-                option === "movie"
-                  ? router.push(`/details/movie${data.id}`)
-                  : option === "tv"
-                  ? router.push(`/details/${data.id}`)
-                  : option === "person" && router.push(`/cast/${data.id}`)
-              }
-              /* onMouseEnter={() => setIsHover(true)}
-              onMouseLeave={() => setIsHover(false)} */
+              onClick={() => navigatePage(data.id)}
             >
               <img
                 className="md:h-[300px] md:min-w-[200px] object-cover"

@@ -21,7 +21,7 @@ import CastSlide from "./CastSlide";
 import CircularRate from "./CircularRate";
 import Container from "./Container";
 
-const pusher = new Pusher(`${process.env.NEXT_PUBLIC_PUSHER_KEY}`, {
+const pusher = new Pusher("value", {
   cluster: "eu",
 });
 

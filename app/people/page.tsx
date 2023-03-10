@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import GlobalLoading from "@/components/GlobalLoading";
 import Navbar from "@/components/Navbar";
 import PeoplePopular from "@/components/PeoplePopular";
+import ToastContainerBar from "@/components/ToastContainer";
 import { PopularTyping } from "@/typings";
 import peopleRequests from "@/utils/personRequest";
 import { motion } from "framer-motion";
@@ -44,6 +45,7 @@ function PersonPage({}: Props) {
       viewport={{ once: true }}
       className="overflow-x-hidden"
     >
+      <ToastContainerBar />
       <Navbar />
       <GlobalLoading isLoading={loading} />
       {!loading && (
