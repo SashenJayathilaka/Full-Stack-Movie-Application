@@ -21,7 +21,7 @@ import CastSlide from "./CastSlide";
 import CircularRate from "./CircularRate";
 import Container from "./Container";
 
-const pusher = new Pusher("value", {
+const pusher = new Pusher("", {
   cluster: "eu",
 });
 

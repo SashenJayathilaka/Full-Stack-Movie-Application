@@ -19,7 +19,7 @@ function searchPage({}: Props) {
     >
       <ToastContainerBar />
       <Navbar />
-      <main>
+      <main className="pl-4 pb-24 lg:space-y-24">
         <SearchComponent />
       </main>
       <Footer />
