@@ -16,7 +16,7 @@ import {
 import { toast } from "react-toastify";
 import CircularRate from "./CircularRate";
 
-const pusher = new Pusher("value", {
+const pusher = new Pusher("", {
   cluster: "eu",
 });
 
@@ -191,6 +191,12 @@ function PersonBanner({ personData, taggedImages }: Props) {
                 >
                   {personData.name}
                 </Typography>
+                <div className="flex justify-start gap-x-20">
+                  <p>Birthday: {personData.birthday}</p>
+                  {personData.deathday && (
+                    <p>Deathday: {personData.deathday}</p>
+                  )}
+                </div>
                 <Stack direction="row" spacing={1} alignItems="center">
                   <CircularRate
                     value={personData.popularity / 100!}

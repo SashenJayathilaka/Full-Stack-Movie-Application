@@ -1,7 +1,10 @@
 import { Details } from "@/typings";
 import { baseURL } from "@/utils/baseUrl";
 import { motion } from "framer-motion";
-import React from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+
 import Container from "./Container";
 
 type Props = {
@@ -9,6 +12,19 @@ type Props = {
 };
 
 function Seasons({ movieDetails }: Props) {
+  const router = useRouter();
+  const { data: session } = useSession();
+
+  const navigatePage = (sessionId: number, sessionNumber: number) => {
+    if (session) {
+      router.push(`/season/${sessionId}?sessionNumber=${sessionNumber}`);
+    } else {
+      toast.error(
+        "You Need to Sign In to Look Up More Information About This Session"
+      );
+    }
+  };
+
   return (
     <div className="px-4 pb-8">
       <Container header="Seasons">
@@ -24,6 +40,9 @@ function Seasons({ movieDetails }: Props) {
               }}
               key={season.id}
               className="relative h-28 min-w-[180px] cursor-pointer transition-transform duration-200 ease-out md:h-[400px] md:min-w-[200px] items-center hover:shadow-2xl"
+              onClick={() =>
+                navigatePage(movieDetails.id, season.season_number)
+              }
             >
               <p
                 className={`text-lg py-2.5 text-gray-400 ${
