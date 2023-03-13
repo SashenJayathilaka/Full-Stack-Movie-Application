@@ -146,7 +146,7 @@ Full Stack Movie Application with NEXT.JS 13!(Next.js 13, mongodb, node js, Next
 
 To run this project, you will need to add the following environment variables to your .env file
 
-Frontend
+- Frontend
 
 `NEXT_PUBLIC_API_KEY`
 
@@ -162,7 +162,7 @@ Frontend
 
 `NEXT_PUBLIC_LOOKUP_KEY`
 
-Server
+- Server
 
 `MONGODB_URL`
 
