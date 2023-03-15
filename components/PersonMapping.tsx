@@ -59,7 +59,7 @@ function PersonMapping({ person }: Props) {
                 ease: [0, 0.71, 0.2, 1.01],
               }}
             >
-              <CircularRate value={person.popularity / 10} isPoster={true} />
+              <CircularRate value={person.popularity / 100} isPoster={true} />
 
               <p className="text-sm font-medium truncate">{person.name}</p>
             </motion.div>

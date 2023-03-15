@@ -106,7 +106,7 @@ function DetailsBanner({ movieDetails, movieCast, session }: Props) {
         setIsLoading(false);
 
         if (data.status === "disLike") {
-          toast.warn("Remove Favorite");
+          toast.info("Remove Favorite");
         } else if (data.status === "like") {
           toast.success("Added Favorite");
         }

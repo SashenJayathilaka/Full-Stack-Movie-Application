@@ -219,7 +219,7 @@ function MainProfile({ userMovieData, userPersonData, userData }: Props) {
                     <>
                       <div className="absolute top-[190px] z-50 items-center ml-6 w-[160px]">
                         <CircularRate
-                          value={cast.popularity / 10}
+                          value={cast.popularity / 100}
                           isPoster={true}
                         />
                         <p className="text-sm font-medium truncate">
