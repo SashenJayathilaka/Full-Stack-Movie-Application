@@ -5,7 +5,7 @@
   <h1>Full Stack Movie Application with NEXT.JS 13!</h1>
 
   <p>
-Full Stack Movie Application with NEXT.JS 13!(Next.js 13, mongodb, node js, NextAuth.js v4, Tailwind CSS, framer-motion, TMDB Api, Google Authentication, primary information about a movies, Users can Add Bookmark in favorite actors and movies).
+Full Stack Movie Application with NEXT.JS 13!(Next.js 13, mongodb, node js, NextAuth.js v4, Tailwind CSS, framer-motion, TMDB Api, Google Authentication, primary information about a movies, Users can Add Bookmark in favorite actors and movies)
   </p>
 
 <!-- Badges -->
